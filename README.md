@@ -6,15 +6,10 @@
 
 ---
 
-### Useful links
+## ▶️ Videos Links
 
-- [**Video Demo**](https://youtu.be/_6RMD15CJKQ)
-- [**Technical Writeup**](https://www.kaggle.com/competitions/google-gemma-3n-hackathon/writeups/medreport)
+- [**Video Demo**](https://youtu.be/EsTw3E4DoC4)
 - [**Real-Time Consultation Demo**](https://youtu.be/TiOGTyoDH2M)
-- **Datasets** : [wouk1805/medreport_audio_204](https://huggingface.co/datasets/wouk1805/medreport_audio_204), [wouk1805/medreport_text_1000](https://huggingface.co/datasets/wouk1805/medreport_text_1000)
-- **Fine-tuned Gemma 3n Models** : [wouk1805/medreport_audio](https://huggingface.co/wouk1805/medreport_audio), [wouk1805/medreport_report](https://huggingface.co/wouk1805/medreport_report)
-- **GitHub** : [wouk1805/medreport](https://github.com/wouk1805/medreport)
-- **Live Demo** : [wouk1805/medreport](https://github.com/wouk1805/medreport)
 
 ---
 
@@ -40,7 +35,7 @@ So grab a coffee if you'd like, and let me show you how we're about to transform
 
 Healthcare faces a critical workflow challenge that directly impacts both patient care quality and physician wellbeing:
 
-**Current State:**
+**📍 Current State:**
 - **10-15 minutes per consultation** lost to post-documentation tasks
 - **2+ hours daily** spent by physicians on paperwork instead of patient care
 - **60% of physician** burnout directly attributed to administrative burden
@@ -49,7 +44,7 @@ Healthcare faces a critical workflow challenge that directly impacts both patien
 
 **Technical Gap:** No existing system can process natural doctor-patient conversations in real-time while maintaining complete privacy and generating professional medical documentation.
 
-**Why Current Solutions Fail:**
+**❌ Why Current Solutions Fail:**
 - **Medical Secretaries:** Limited availability, expensive, still require dictation time
 - **Dictation Software:** Requires formal post-consultation dictation, breaks consultation flow
 - **EHR Systems:** Focus on manual data entry rather than natural conversation capture
@@ -61,7 +56,7 @@ Healthcare faces a critical workflow challenge that directly impacts both patien
 
 MedReport leverages fine-tuned Gemma 3n to transform unstructured healthcare dialogues into structured medical documentation without requiring any additional workflow steps.
 
-**System Workflow:**
+**⚙️ System Workflow:**
 1. **Natural Consultation:** Doctor and patient converse normally during visit
 2. **Real-Time Capture**: A fine-tuned Gemma 3n model processes conversations locally, providing on-device audio transcription
 3. **Instant Transcription:** Live text appears with medical terminology accuracy
@@ -76,22 +71,22 @@ MedReport leverages fine-tuned Gemma 3n to transform unstructured healthcare dia
 
 ## 🔧 Technical Implementation
 
-### Advanced GUI Development & User Experience
+### 🧑‍💻 Advanced GUI Development & User Experience
 
 The application features a sophisticated GUI developed with Tkinter, providing a fluid, interactive UI/UX experience. Special attention was given to creating non-blocking threads to ensure smooth real-time performance while maintaining responsive user interaction. 
-
-**Audio Wave Animation:** Significant development time was invested in creating engaging audio wave animations, which not only provide visual feedback during recording but also add a professional, modern feel to the medical workflow. These real-time visualizations were quite fun to implement and bring the interface to life, making the recording process more engaging for healthcare professionals.
 
 **Modular Architecture:**
 The codebase follows a clean, modular structure with clearly separated components for audio handling, UI management, PDF generation, real-time animations, and structured report logic. This improves maintainability and allows easy customization or extension for new features.
 
+**Audio Wave Animation:** Significant development time was invested in creating engaging audio wave animations, which not only provide visual feedback during recording but also add a professional, modern feel to the medical workflow. These real-time visualizations were quite fun to implement and bring the interface to life, making the recording process more engaging for healthcare professionals.
+
 **Advanced Features:**
-* **Dual storage system:** Raw markdown + formatted display text
 * **Thread-safe operations:** Proper async handling for audio and UI
 * **Memory management:** Smart buffer handling and cleanup
 * **Error resilience:** Graceful degradation and comprehensive error handling
+* **Dual storage system:** Raw markdown + formatted display text
 
-### Audio Processing Innovation
+### 🎧 Audio Processing Innovation
 
 **Google Gemma 3n Audio Optimization:**
 Following official Google recommendations for Gemma 3n audio processing ([Source: Google AI for Developers](https://ai.google.dev/gemma/docs/capabilities/audio)):
@@ -110,11 +105,13 @@ We implement an intelligent audio processing strategy saving audio as WAV files 
 - Complete transcription text sent to model (not individual audio files)
 - Clinical continuity maintained while optimizing processing efficiency
 
-### Fine-Tuning Strategy
+### 🔧 Fine-Tuning Strategy
 
-We implemented a comprehensive two-stage fine-tuning approach, separating audio transcription and report generation for optimal performance:
+#### 🚀 Unsloth Integration: Maximizing Efficiency
 
-#### Stage 1: Medical Audio Transcription
+We implemented a two-stage fine-tuning pipeline separating audio transcription and report generation, leveraging Unsloth to speed up training 2-5x, reduce memory by 80%, and enable efficient experimentation within hackathon constraints.
+
+#### 🎤 Stage 1: Medical Audio Transcription
 
 **Dataset & Methodology:**
 - **204 medical consultation samples** (< 10 seconds each), French language (later expandable to 100+ languages)
@@ -141,7 +138,7 @@ We implemented a comprehensive two-stage fine-tuning approach, separating audio 
 
 **Published Model:** `wouk1805/medreport_audio` (Fine-tuned for medical audio transcription)
 
-#### Stage 2: Report Generation
+#### 📄 Stage 2: Report Generation
 
 **Dataset & Methodology:**
 - **Size:** 1,000 curated transcription-to-report pairs
@@ -151,10 +148,10 @@ We implemented a comprehensive two-stage fine-tuning approach, separating audio 
 
 **Two-Stage Dataset Generation Process:**
 
-We created a high-quality training dataset via a custom **two-stage generation strategy** using **GPT-4o**:
+We created a high-quality training dataset via a custom two-stage generation strategy using GPT-4o:
 
 *1 – Structured Medical Report Creation*
-GPT-4o was used to generate diverse and realistic **SOAP-format medical reports** (Subjective, Objective, Assessment, Plan). Each report includes:
+GPT-4o was used to generate diverse and realistic SOAP-format medical reports (Subjective, Objective, Assessment, Plan). Each report includes:
 - Randomly selected medical specialties and conditions
 - Detailed clinical content: vital signs, labs, exams, and treatment plans
 - Prescription data annotated using custom `<prescription>` XML tags
@@ -162,7 +159,7 @@ GPT-4o was used to generate diverse and realistic **SOAP-format medical reports*
 This ensured structured, professional outputs for fine-tuning report generation.
 
 *2 – Transcription Simulation*
-Each structured report was transformed into a **noisy, natural-sounding audio transcription** simulating real doctor–patient conversations, with:
+Each structured report was transformed into a noisy, natural-sounding audio transcription simulating real doctor–patient conversations, with:
 - Speech disfluencies, false starts, casual language
 - Audio imperfections: word drops, substitutions, and repetitions
 - Conversational style without role labels or timestamps, segmented in ~10-second chunks
@@ -199,7 +196,7 @@ We couldn't use reliable metrics like BLEU or ROUGE, since there is no single tr
 
 **Published Model:** `wouk1805/medreport_report` (Fine-tuned for transcription-to-report transformation)
 
-### Architecture Decision: Two-Model Strategy
+### ⚙️ Architecture Decision: Two-Model Strategy
 
 **Why Separate Models Instead of Continual Fine-Tuning:**
 We deliberately chose to fine-tune two separate models rather than using sequential or continual fine-tuning for several critical reasons:
@@ -212,7 +209,7 @@ We deliberately chose to fine-tune two separate models rather than using sequent
 
 This approach ensures optimal performance for both audio transcription and report generation while maintaining system modularity and efficiency.
 
-### Document Integration & Report Processing
+### 🗂️ Document Integration & Report Processing
 
 **External Document Integration:**
 - **PDF Processing:** Text extraction using PyMuPDF for seamless document integration
@@ -226,7 +223,7 @@ This approach ensures optimal performance for both audio transcription and repor
 - **Custom Output Support:** Users can define their own report structure by editing the `custom_report_format.txt` file. This file is passed directly as a prompt template, allowing the model to generate fully customized report formats.
 - **User Control:** Format selection and customization are entirely user-defined, enabling tailored documentation for specific medical settings or preferences.
 
-### Advanced Function Calling
+### 🛠️ Advanced Function Calling
 
 **One-Shot Processing Efficiency:**
 Rather than separate processing layers, our model generates structured reports with embedded XML prescriptions in a single inference step:
@@ -251,7 +248,7 @@ Rather than separate processing layers, our model generates structured reports w
 
 ## 🔐 Privacy & Compliance Excellence
 
-### Healthcare-First Privacy Architecture
+### 👩‍⚕️ Healthcare-First Privacy Architecture
 
 **Complete Data Sovereignty:**
 - **Zero Data Transmission:** Patient conversations never leave local device
@@ -266,7 +263,7 @@ MedReport demonstrates that sophisticated healthcare AI can achieve professional
 
 ## 🌍 Global Impact & Accessibility
 
-### Measurable Healthcare Transformation
+### 📊 Measurable Healthcare Transformation
 
 | Impact Metric | MedReport Achievement | Industry Standard | Improvement |
 |---------------|----------------------|-------------------|-------------|
@@ -276,7 +273,7 @@ MedReport demonstrates that sophisticated healthcare AI can achieve professional
 | Report Generation | 15-30 seconds | 5-15 minutes manual creation | **>10× faster** |
 | Privacy Compliance | 100% local processing | Cloud-dependent solutions | **Complete sovereignty** |
 
-### Global Healthcare Vision
+### 🌏 Global Healthcare Vision
 
 **Worldwide Impact Scale:**
 - **2.1 billion** annual patient encounters could benefit from automated documentation
@@ -294,13 +291,22 @@ MedReport demonstrates that sophisticated healthcare AI can achieve professional
 
 ## 💻 Open Source & Accessibility
 
-### 💡 Complete Open Source Implementation
+### 💡 Open Source Code, Datasets, Models & Reproducibility
 
-**GitHub Repository:** `wouk1805/medreport`
-- Full Python implementation with comprehensive GUI
-- Complete fine-tuning notebooks and datasets
-- Installation scripts and deployment documentation
-- Community-driven development for global healthcare impact
+All code is fully open-source and available at GitHub: [wouk1805/medreport](https://github.com/wouk1805/medreport).
+
+- 📓 **Training Notebooks**: Google Colab notebooks for fine-tuning both models:
+  - [Audio Transcription](https://colab.research.google.com/drive/1htRm5fJQ4Dymx2T0_Rk3guA9KHhIdnfu?usp=sharing)
+  - [Report Generation](https://colab.research.google.com/drive/17SZVpE4gShgtRBkDqoMMqLan5RXxAaWN?usp=sharing)
+- 📦 **Datasets**: Publicly available on Hugging Face:
+  - [`wouk1805/medreport_audio_204`](https://huggingface.co/datasets/wouk1805/medreport_audio_204)
+  - [`wouk1805/medreport_text_1000`](https://huggingface.co/datasets/wouk1805/medreport_text_1000)
+- 🧠 **Pretrained Models**: Publicly hosted on Hugging Face:
+  - [`wouk1805/medreport_audio`](https://huggingface.co/wouk1805/medreport_audio) (Medical audio transcription)
+  - [`wouk1805/medreport_report`](https://huggingface.co/wouk1805/medreport_report) (Transcription-to-report transformation)
+- 🚀 **Quick Start**: The GitHub repo contains `requirements.txt`, a modular Python codebase, and clear installation steps.
+- ✅ **Runs Fully Locally**: All inference and transcription is processed on-device. No external APIs or cloud infrastructure are required.
+- 🛠️ **Reproducibility**: Full end-to-end workflows are provided for model training, inference, and PDF generation.
 
 **Hardware Requirements**
 > ⚠️ *This application was developed and tested on high-performance machines equipped with NVIDIA A100 and L4 GPUs. Performance and functionality may vary on lower-end or CPU-only systems, particularly for real-time audio transcription.*
@@ -311,25 +317,29 @@ MedReport demonstrates that sophisticated healthcare AI can achieve professional
 git clone https://github.com/wouk1805/medreport.git
 cd medreport
 
-# Install dependencies (requirements.txt included)
-pip install sounddevice scipy numpy requests tkinter
-pip install transformers torch unsloth reportlab PyMuPDF
+# Create virtual environment (recommended)
+python -m venv medreport_env
+
+# Activate virtual environment
+# Windows:
+medreport_env\Scripts\activate
+# macOS/Linux:
+source medreport_env/bin/activate
+
+# Install all dependencies
+pip install -r requirements.txt
 
 # Launch application
 python main.py
 ```
 
-### 📊 Public Datasets & Models
-
-**HuggingFace Resources:**
-- **Audio Dataset:** `wouk1805/medreport_audio_204`
-- **Report Dataset:** `wouk1805/medreport_report_1000`
-- **Audio Transcription Model:** `wouk1805/medreport_audio` (Fine-tuned for medical audio transcription)
-- **Report Generation Model:** `wouk1805/medreport_report` (Fine-tuned for transcription-to-report transformation)
-
 ---
 
 ## 🎉 Perfect Gemma 3n Challenge Alignment
+
+### 🎖️ Challenge Vision Fulfillment
+
+MedReport exemplifies the Google Gemma 3n Impact Challenge mission: leveraging cutting-edge AI technology to build a measurably better world. We demonstrate that specialized, privacy-first AI can address critical global challenges while showcasing Gemma 3n's revolutionary capabilities.
 
 ### 🏆 Technical Excellence Showcase
 
@@ -342,10 +352,6 @@ python main.py
 **✅ Real-World Impact:** Solving critical healthcare challenges with measurable global benefits
 
 **✅ Privacy Leadership:** Setting new standards for responsible AI with complete data sovereignty
-
-### 🎖️ Challenge Vision Fulfillment
-
-MedReport exemplifies the Google Gemma 3n Impact Challenge mission: leveraging cutting-edge AI technology to build a measurably better world. We demonstrate that specialized, privacy-first AI can address critical global challenges while showcasing Gemma 3n's revolutionary capabilities.
 
 ---
 
@@ -391,17 +397,12 @@ MedReport represents a fundamental breakthrough in healthcare technology, provin
 
 ---
 
-## 📞 Project Resources
+## 📞 Contact
 
 **👨‍⚕️ Author:** Young-wouk KIM - Doctor & Developer  
 **🌐 Website:** [wouk1805.com](https://wouk1805.com)   
 **💻 GitHub:** wouk1805/medreport  
-**📊 Fine-tuned Models & Datasets:** HuggingFace - wouk1805/medreport_*  
 
 **MedReport: Where Gemma 3n's AI Excellence Transforms Healthcare Documentation**
 
 *Turning every conversation into care, every consultation into professional documentation.*
-
----
-
-*#Gemma3nImpactChallenge #AIHealthcare #ConversationToDocumentation #PrivacyFirstAI*
