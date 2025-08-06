@@ -144,7 +144,7 @@ We implemented a two-stage fine-tuning pipeline separating audio transcription a
 - **Size:** 1,000 curated transcription-to-report pairs
 - **Method:** GPT-4o generation with specialized medical prompts
 - **Validation:** Manual review for medical accuracy and SOAP format compliance
-- **Public Access:** Available as `wouk1805/medreport_report_1000`
+- **Public Access:** Available as `wouk1805/medreport_text_1000`
 
 **Two-Stage Dataset Generation Process:**
 
