@@ -1,0 +1,86 @@
+# MedReport - Medical Transcription AI Application
+# ============================================================================
+
+# Core Audio Processing
+sounddevice>=0.4.6          # Real-time audio recording and streaming
+scipy>=1.10.1               # Audio signal processing and WAV file operations
+numpy>=1.24.0               # Numerical computing for audio data manipulation
+librosa>=0.10.0             # Advanced audio processing and feature extraction
+
+# Local AI Model Inference - Gemma 3n Support
+torch>=2.1.0                # PyTorch for model inference
+transformers>=4.53.0        # HuggingFace Transformers (Gemma 3n support from 4.53.0+)
+accelerate>=0.24.0          # Accelerated model loading and inference
+safetensors>=0.4.0          # Safe tensor serialization for model weights
+tokenizers>=0.15.0          # Fast tokenization for transformer models
+bitsandbytes>=0.41.0        # Quantization support for memory efficiency
+
+# Unsloth for Optimized Gemma 3n Inference
+unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git
+# Alternative standard installation (choose one of the above):
+# unsloth>=2024.1
+
+# PDF Generation and Document Processing
+reportlab>=4.0.0            # Professional PDF generation with formatting
+PyMuPDF>=1.23.0             # PDF document import and text extraction (fitz library)
+
+# Dataset and Testing Support
+datasets>=2.14.0            # HuggingFace datasets for model testing
+soundfile>=0.12.0           # Audio file I/O operations
+
+# Enhanced Dependencies for Production
+huggingface-hub>=0.19.0     # Model downloads and hub integration
+pillow>=10.0.0              # Image processing for enhanced PDF support
+packaging>=21.0             # Dependency management utilities
+
+# Optional GPU Support (uncomment for CUDA acceleration)
+# For NVIDIA GPUs with CUDA 11.8:
+# torch>=2.1.0+cu118 --index-url https://download.pytorch.org/whl/cu118
+# For NVIDIA GPUs with CUDA 12.1:
+# torch>=2.1.0+cu121 --index-url https://download.pytorch.org/whl/cu121
+
+# System Compatibility
+setuptools>=65.0            # Package installation utilities
+wheel>=0.38.0               # Binary package format
+
+# ============================================================================
+# GUI Framework Note:
+# tkinter comes pre-installed with most Python distributions
+# If tkinter is missing, install via system package manager:
+# - Ubuntu/Debian: sudo apt-get install python3-tk
+# - CentOS/RHEL: sudo yum install tkinter
+# - macOS: tkinter included with official Python installer
+# - Windows: tkinter included with Python installer
+# ============================================================================
+
+# ============================================================================
+# CUDA GPU Support (Optional but Recommended):
+# 
+# For NVIDIA GPUs, replace the standard torch line above with:
+# 
+# For CUDA 11.8:
+# torch>=2.1.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+# 
+# For CUDA 12.1:
+# torch>=2.1.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+# 
+# Check your CUDA version with: nvidia-smi
+# ============================================================================
+
+# ============================================================================
+# System Requirements:
+# - Python 3.8+ (3.9+ recommended for optimal performance)
+# - Windows 10/11, macOS 10.14+, or Linux with audio support
+# - Microphone access for audio recording
+# - Minimum 8GB RAM (16GB recommended for optimal model performance)
+# - 4GB free disk space for models and audio chunks storage
+# - Optional: NVIDIA GPU with 6GB+ VRAM for faster inference
+#
+# Model Download Info:
+# Models will be automatically downloaded from HuggingFace on first run:
+# - wouk1805/medreport_audio (~2GB)
+# - wouk1805/medreport_report (~2GB)
+# 
+# Initial download may take several minutes depending on connection speed.
+# Models are cached locally for subsequent runs.
+# ============================================================================
